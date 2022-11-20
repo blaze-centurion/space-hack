@@ -66,16 +66,17 @@ const index = () => {
 							?
 						</Heading>
 						<Text p="10px 0" color="whiteAlpha.700">
-							Orbital debris (duh BREE) is "junk" that is circling
-							Earth. It is pieces from spacecraft. Humans have
-							been launching objects into space for more than 50
-							years. Most of those objects have fallen back to
-							Earth. A piece of debris falls back to Earth about
-							once a day. These objects either land or burn up in
-							the atmosphere. Most objects that return to Earth
-							end up in water, since it makes up 70 percent of
-							Earth's surface. But many of the objects sent into
-							space are still in orbit around Earth.
+							Orbital debris (duh BREE) is &quot;junk&quot; that
+							is circling Earth. It is pieces from spacecraft.
+							Humans have been launching objects into space for
+							more than 50 years. Most of those objects have
+							fallen back to Earth. A piece of debris falls back
+							to Earth about once a day. These objects either land
+							or burn up in the atmosphere. Most objects that
+							return to Earth end up in water, since it makes up
+							70 percent of Earth&apos;s surface. But many of the
+							objects sent into space are still in orbit around
+							Earth.
 						</Text>
 					</Box>
 				</Grid>

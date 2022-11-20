@@ -6,14 +6,12 @@ import NewsItem from "../components/NewsItem";
 import SearchBar from "../components/SearchBar";
 import SmallNewsItem from "../components/SmallNewsItem";
 
-const news = () => {
+const News = () => {
 	const [loading, setLoading] = useState(true);
 	const [trendingNews, setTrendingNews] = useState([]);
 	const [indiaNews, setIndiaNews] = useState([]);
 	const [news, setNews] = useState([]);
 	const [input, setInput] = useState("");
-	const [filter, setFilter] = useState("");
-	const [domains, setDomain] = useState("");
 
 	useEffect(() => {
 		const getNews = async () => {
@@ -43,7 +41,6 @@ const news = () => {
 			`https://newsapi.org/v2/everything?q=${input}&apiKey=02bdbf8a6c35418bb25eb5aeb9d4f8ce`
 		);
 		const data = await res.json();
-		console.log(data);
 		setNews(data.articles.slice(0, 10));
 	};
 
@@ -183,4 +180,4 @@ const news = () => {
 	);
 };
 
-export default news;
+export default News;

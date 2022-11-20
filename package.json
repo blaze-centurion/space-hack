@@ -20,10 +20,7 @@
     "react": "18.2.0",
     "react-countup": "^6.3.2",
     "react-dom": "18.2.0",
-    "react-globe.gl": "^2.22.7",
-    "react-particles": "^2.5.3",
-    "tle2czml": "^1.0.0",
-    "tsparticles-engine": "^2.5.2"
+    "react-globe.gl": "^2.22.7"
   },
   "devDependencies": {
     "eslint": "8.28.0",
