@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;1,400&family=Poppins&display=swap"
+			rel="stylesheet"
+		/>
+
+		<title>Document</title>
+		<style>
+			* {
+				font-family: "Poppins", sans-serif !important;
+				box-sizing: border-box !important;
+			}
+			body {
+				margin: 0;
+			}
+
+			#time-log {
+				position: absolute;
+				font-size: 12px;
+				font-family: sans-serif;
+				padding: 5px;
+				border-radius: 3px;
+				background-color: rgba(200, 200, 200, 0.1);
+				color: lavender;
+				bottom: 10px;
+				right: 10px;
+			}
+			.back_btn {
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				outline: none;
+				background: transparent;
+				color: white;
+				padding: 8px 15px;
+				border: 2px solid rgba(255, 255, 255, 0.5);
+				border-radius: 5px;
+				cursor: pointer;
+			}
+			.back_btn img {
+				width: 18px;
+				filter: invert(1);
+			}
+			.select_container {
+				position: absolute;
+				top: 80px;
+				left: 20px;
+			}
+			.select_box {
+				position: relative;
+				border-radius: 10px;
+				width: 270px;
+				margin: 10px 0;
+			}
+			.select_box .label {
+				background: #fff;
+				padding: 0 10px;
+				padding-right: 15px;
+				height: 50px;
+				width: 100%;
+				display: flex;
+				align-items: center;
+				font-size: 15px;
+				border-radius: 5px 5px 0 0;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				cursor: pointer;
+			}
+			.select_box .label img {
+				transform: rotate(-90deg);
+				width: 13px;
+			}
+			.select_box ul.menu {
+				max-height: 70vh;
+				list-style: none;
+				position: absolute;
+				top: 34px;
+				left: 0;
+				background: #fff;
+				width: 100%;
+				border-top: 1px solid #ddd;
+				overflow: hidden;
+				padding: 0 10px;
+				height: 0;
+				border-radius: 0 0 5px 5px;
+				transition: all 0.2s;
+				overflow: auto;
+			}
+			.select_box ul.menu.active {
+				padding: 10px;
+				height: auto;
+				z-index: 100;
+			}
+			.select_box ul.menu li {
+				padding: 10px;
+				margin: 5px 0;
+				cursor: pointer;
+			}
+			.select_box ul.menu.no_sub li {
+				display: flex;
+				font-weight: 500;
+				cursor: pointer;
+				background: white;
+				border-radius: 5px;
+				font-size: 14px;
+				align-items: center;
+				justify-content: space-between;
+			}
+			.select_box ul.menu li ul {
+				padding: 0;
+				margin-left: 5px;
+			}
+			.select_box ul.menu li ul li {
+				display: flex;
+				font-weight: 500;
+				cursor: pointer;
+				background: white;
+				border-radius: 5px;
+				font-size: 14px;
+				align-items: center;
+				justify-content: space-between;
+			}
+			.select_box ul.menu li ul li:hover {
+				background: #ff7f50;
+				color: white;
+			}
+			.popup {
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				background: #fff;
+				border-radius: 5px;
+				width: 400px;
+				opacity: 0;
+				display: none;
+			}
+			.popup.active {
+				opacity: 1;
+				display: block;
+			}
+			.popup-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				border-bottom: 1px solid #ddd;
+				padding: 8px 15px;
+			}
+			.popup-header h3 {
+				margin: 0;
+				font-size: 18px;
+				font-weight: 500;
+				font-family: "Poppins", sans-serif !important;
+			}
+			.popup-header button {
+				background-color: transparent;
+				outline: none;
+				border: none;
+				font-size: 25px;
+				color: rgba(0, 0, 0, 0.6);
+				cursor: pointer;
+			}
+			.popup-content {
+				padding: 0 10px;
+				margin: 0;
+			}
+			.popup-content p {
+				font-size: 15px;
+			}
+		</style>
+
+		<script src="//unpkg.com/three"></script>
+		<script src="//unpkg.com/satellite.js/dist/satellite.min.js"></script>
+		<script src="//unpkg.com/globe.gl"></script>
+	</head>
+	<body>
+		<div id="chart"></div>
+		<div id="time-log"></div>
+		<a href="/">
+			<button class="back_btn">
+				<img src="./back_arrow.png" alt="" />
+				Back To Home
+			</button>
+		</a>
+		<div class="select_container">
+			<div class="select_box">
+				<div class="label show_sat">
+					Satellites Shown <img src="./down.png" />
+				</div>
+				<ul class="menu" id="show_sat_list"></ul>
+			</div>
+			<div class="select_box show_deb">
+				<div class="label">Show Debris <img src="./down.png" /></div>
+				<ul class="menu no_sub" id="show_deb_list">
+					<li>
+						Debris
+						<span
+							style="
+								background: #a4b0be;
+								width: 20px;
+								height: 20px;
+							"
+						></span>
+					</li>
+					<!-- <li>Hide Debris</li> -->
+				</ul>
+			</div>
+			<div class="select_box show_prop">
+				<div class="label">
+					Show Satellite Propogation<img src="./down.png" />
+				</div>
+				<ul class="menu" id="show_prop_list">
+					<li class="propgation" show="true">
+						Show Satellite Propogation
+					</li>
+					<li class="propgation" show="false">
+						Stop Satellite Propogation
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="popup">
+			<div class="popup-header">
+				<h3 id="popup_title"></h3>
+				<button id="close_btn">×</button>
+			</div>
+			<div class="popup-content">
+				<p id="popup_content"></p>
+			</div>
+		</div>
+
+		<script src="./utils/utils.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			document
+				.querySelector(".show_sat")
+				.addEventListener("click", (e) => {
+					e.stopPropagation();
+					document
+						.querySelector("#show_sat_list")
+						.classList.toggle("active");
+				});
+			document
+				.querySelector(".show_deb")
+				.addEventListener("click", (e) => {
+					e.stopPropagation();
+					document
+						.querySelector("#show_deb_list")
+						.classList.toggle("active");
+				});
+			document
+				.querySelector(".show_prop")
+				.addEventListener("click", (e) => {
+					e.stopPropagation();
+					document
+						.querySelector("#show_prop_list")
+						.classList.toggle("active");
+				});
+			document
+				.querySelector("#close_btn")
+				.addEventListener("click", function () {
+					document.querySelector(".popup").classList.remove("active");
+				});
+
+			const configureSatSelectBox = () => {
+				const parentMenu = document.querySelector("#show_sat_list");
+				SATELLITES.forEach((item) => {
+					const parentLi = document.createElement("li");
+					const menu = document.createElement("ul");
+					item.data.forEach((i) => {
+						const li = document.createElement("li");
+						const span = document.createElement("span");
+						span.setAttribute(
+							"style",
+							`background:${i.color}; width:20px;height:20px;`
+						);
+						// const input = document.createElement("input");
+						// input.setAttribute("type", "checkbox");
+						// input.setAttribute("checked", "true");
+						// input.setAttribute("class", "sat_checkbox");
+						// input.setAttribute("name", i.name);
+						li.append(i.name);
+						li.appendChild(span);
+						menu.appendChild(li);
+					});
+					parentLi.append(item.name);
+					parentLi.appendChild(menu);
+					parentMenu.appendChild(parentLi);
+				});
+			};
+			configureSatSelectBox();
+		</script>
+		<script src="./utils/script.js" type="text/javascript"></script>
+	</body>
+</html>

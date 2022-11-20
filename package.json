@@ -9,9 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/montserrat": "^4.5.13",
+    "@fontsource/poppins": "^4.5.10",
+    "framer-motion": "^7.6.7",
+    "globe.gl": "^2.26.9",
     "next": "13.0.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-countup": "^6.3.2",
+    "react-dom": "18.2.0",
+    "react-globe.gl": "^2.22.7",
+    "react-particles": "^2.5.3",
+    "tle2czml": "^1.0.0",
+    "tsparticles-engine": "^2.5.2"
   },
   "devDependencies": {
     "eslint": "8.28.0",
