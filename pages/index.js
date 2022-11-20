@@ -1,4 +1,5 @@
 import {
+	Accordion,
 	Box,
 	Button,
 	Container,
@@ -11,6 +12,7 @@ import BannerList from "../components/BannerList";
 import Header from "../components/Header";
 import CountUp, { useCountUp } from "react-countup";
 import Link from "next/link";
+import CustomAccordion from "../components/CustomAccordionItem";
 
 const index = () => {
 	return (
@@ -304,6 +306,49 @@ const index = () => {
 						</Box>
 					</Box>
 				</Grid>
+
+				<Box mb="2rem">
+					<Heading textAlign={"center"} fontSize="35px" mb="2rem">
+						FAQs
+					</Heading>
+					<Accordion allowMultiple maxW="70%" m="auto">
+						<CustomAccordion
+							title="What are examples of orbital debris?"
+							desc="Derelict spacecraft and upper stages of launch vehicles, carriers for multiple payloads, debris intentionally released during spacecraft separation from its launch vehicle or during mission operations, debris created as a result of spacecraft or upper stage explosions or collisions, solid rocket motor effluents, and tiny flecks of paint released by thermal stress or small particle impacts."
+						/>
+						<CustomAccordion
+							title="Is there an international treaty on orbital debris?"
+							desc="No, but the leading space agencies of the world have formed the Inter-Agency Space Debris Coordination Committee (IADC) to address orbital debris issues and to encourage operations in Earth orbit which limit the growth of orbital debris. In addition, since 1994 orbital debris has been a topic of assessment and discussion in the Scientific and Technical Subcommittee of the United Nations Committee on the Peaceful Uses of Outer Space (COPUOS). Both IADC and COPUOS have published orbital debris mitigation guidelines for the international community to follow."
+						/>
+						<CustomAccordion
+							title="How is the number of orbital debris determined?"
+							desc="Large orbital debris (> 10 cm) is tracked routinely by the U.S. Space Surveillance Network. Objects as small as 3 mm can be detected by ground-based radars, providing a basis for a statistical estimate of their numbers. Assessments of the population of orbital debris smaller than 1 mm can be made by examining impact features on the surfaces of returned spacecraft, although this has been limited to spacecraft operating in altitudes below 600 km."
+						/>
+						<CustomAccordion
+							title="Does the International Space Station have to dodge orbital debris?"
+							desc="The U.S. Space Surveillance Network regularly examines the trajectories of orbital debris to identify possible close encounters. If another object is projected to come within a few kilometers of the International Space Station (ISS), the ISS will normally maneuver away from the object if the chance of a collision exceeds 1 in 10,000. This occurs infrequently, about once a year on average."
+						/>
+						<CustomAccordion
+							title="How fast is orbital debris traveling?"
+							desc="In low Earth orbit (below 2,000 km), orbital debris circles the Earth at speeds of about 7 to 8 km/s. However, the average impact speed of orbital debris with another space object is approximately 10 km/s, and can be up to about 15 km/s, which is more than 10 times the speed of a bullet. Consequently, collisions with even a small piece of debris will involve considerable energy."
+						/>
+						<CustomAccordion
+							title="Is reentering debris a risk to people and property on Earth?"
+							desc="A significant amount of debris does not survive the severe heating that occurs during reentry. Components which do survive are most likely to fall into the oceans or other bodies of water or onto sparsely populated regions like the Canadian Tundra, the Australian Outback, or Siberia in the Russian Federation. During the past 50 years an average of one cataloged piece of debris fell back to Earth each day. No serious injury or significant property damage caused by reentering debris has been confirmed."
+						/>
+					</Accordion>
+				</Box>
+
+				<Box
+					borderTop="1px solid rgba(255,255,255,0.16)"
+					display="flex"
+					alignItems="center"
+					fontSize="16px"
+					color="whiteAlpha.700"
+				>
+					<Image src="/logo.png" h="90px" />
+					<Text>Copyright @ 2022 Orbitron</Text>
+				</Box>
 			</Container>
 		</>
 	);
