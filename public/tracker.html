@@ -59,7 +59,7 @@
 			.select_box {
 				position: relative;
 				border-radius: 10px;
-				width: 270px;
+				width: 300px;
 				margin: 10px 0;
 			}
 			.select_box .label {
@@ -107,6 +107,7 @@
 				margin: 5px 0;
 				cursor: pointer;
 			}
+
 			.select_box ul.menu.no_sub li {
 				display: flex;
 				font-weight: 500;
@@ -117,6 +118,7 @@
 				align-items: center;
 				justify-content: space-between;
 			}
+
 			.select_box ul.menu li ul {
 				padding: 0;
 				margin-left: 5px;
@@ -177,6 +179,14 @@
 			.popup-content p {
 				font-size: 15px;
 			}
+			.search_input {
+				outline: none;
+				padding: 10px 15px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				height: 50px;
+				width: 100%;
+			}
 		</style>
 
 		<script src="//unpkg.com/three"></script>
@@ -193,6 +203,13 @@
 			</button>
 		</a>
 		<div class="select_container">
+			<!-- <form class="form">
+				<input
+					placeholder="Search any satellite"
+					class="search_input"
+					type="search"
+				/>
+			</form> -->
 			<div class="select_box">
 				<div class="label show_sat">
 					Satellites Shown <img src="./down.png" />
@@ -200,9 +217,15 @@
 				<ul class="menu" id="show_sat_list"></ul>
 			</div>
 			<div class="select_box show_deb">
-				<div class="label">Show Debris <img src="./down.png" /></div>
+				<div class="label">Debris<img src="./down.png" /></div>
 				<ul class="menu no_sub" id="show_deb_list">
-					<li>
+					<li class="deb">
+						<input
+							type="checkbox"
+							checked="true"
+							class="deb_checkbox"
+							color="#a4b0be"
+						/>
 						Debris
 						<span
 							style="
@@ -216,8 +239,9 @@
 				</ul>
 			</div>
 			<div class="select_box show_prop">
-				<div class="label">
-					Show Satellite Propogation<img src="./down.png" />
+				<div class="label propg_label">
+					<span>Show Satellite Propogation</span>
+					<img src="./down.png" />
 				</div>
 				<ul class="menu" id="show_prop_list">
 					<li class="propgation" show="true">
@@ -282,14 +306,17 @@
 						const span = document.createElement("span");
 						span.setAttribute(
 							"style",
-							`background:${i.color}; width:20px;height:20px;`
+							`background:${i.color}; width:20px; height:20px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);`
 						);
-						// const input = document.createElement("input");
-						// input.setAttribute("type", "checkbox");
-						// input.setAttribute("checked", "true");
-						// input.setAttribute("class", "sat_checkbox");
-						// input.setAttribute("name", i.name);
-						li.append(i.name);
+						const input = document.createElement("input");
+						const nameSpan = document.createElement("span");
+						input.setAttribute("type", "checkbox");
+						input.setAttribute("checked", "true");
+						input.setAttribute("class", "sat_checkbox");
+						input.setAttribute("color", i.color);
+						nameSpan.append(i.name);
+						li.append(input);
+						li.append(nameSpan);
 						li.appendChild(span);
 						menu.appendChild(li);
 					});

@@ -15,17 +15,14 @@ const CreateWorld = () =>
 		.objectLng("lng")
 		.objectAltitude("alt")
 		.objectLabel("name")
-		.objectThreeObject(
-			(d) =>
-				new THREE.Mesh(
-					new THREE.SphereGeometry(d.radius),
-					new THREE.MeshLambertMaterial({
-						color: d.color,
-						transparent: true,
-						opacity: d.opacity,
-					})
-				)
-		)
+		.objectThreeObject((d) => {
+			return new THREE.Mesh(
+				new THREE.SphereGeometry(1),
+				new THREE.MeshLambertMaterial({
+					color: d.color,
+				})
+			);
+		})
 		.onObjectClick((obj, evt, coord) => {
 			const content = document.querySelector("#popup_content");
 			const title = document.querySelector("#popup_title");
@@ -135,6 +132,33 @@ const SATELLITES = [
 				name: "Other Satellites",
 				url: "https://celestrak.org/NORAD/elements/gp.php?GROUP=other&FORMAT=tle",
 				color: "#079992",
+			},
+		],
+	},
+];
+const DEBRIS = [
+	{
+		name: "Debris",
+		data: [
+			{
+				name: "Russian ASAT Test Debris (COSMOS 1408)",
+				url: "https://celestrak.org/NORAD/elements/gp.php?GROUP=1982-092&FORMAT=tle",
+				color: "#a4b0be",
+			},
+			{
+				name: "Chinese ASAT Test Debris (FENGYUN 1C)",
+				url: "https://celestrak.org/NORAD/elements/gp.php?GROUP=1999-025&FORMAT=tle",
+				color: "#a4b0be",
+			},
+			{
+				name: "IRIDIUM 33 Debris",
+				url: "https://celestrak.org/NORAD/elements/gp.php?GROUP=iridium-33-debris&FORMAT=tle",
+				color: "#a4b0be",
+			},
+			{
+				name: "COSMOS 2251 Debris",
+				url: "https://celestrak.org/NORAD/elements/gp.php?GROUP=cosmos-2251-debris&FORMAT=tle",
+				color: "#a4b0be",
 			},
 		],
 	},

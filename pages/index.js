@@ -6,15 +6,35 @@ import {
 	Grid,
 	Heading,
 	Image,
+	Spinner,
 	Text,
 } from "@chakra-ui/react";
 import BannerList from "../components/BannerList";
 import Header from "../components/Header";
-import CountUp, { useCountUp } from "react-countup";
+import CountUp from "react-countup";
 import Link from "next/link";
 import CustomAccordion from "../components/CustomAccordionItem";
+import { useEffect, useState } from "react";
 
-const index = () => {
+const Index = () => {
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => setLoading(false), []);
+
+	if (loading) {
+		return (
+			<Box
+				w="100vw"
+				h="100vh"
+				display="flex"
+				justifyContent="center"
+				alignItems="center"
+			>
+				<Spinner size="xl" />
+			</Box>
+		);
+	}
+
 	return (
 		<>
 			<Container maxW="xxl" px="7rem">
@@ -311,7 +331,7 @@ const index = () => {
 					<Heading textAlign={"center"} fontSize="35px" mb="2rem">
 						FAQs
 					</Heading>
-					<Accordion allowMultiple maxW="70%" m="auto">
+					<Accordion maxW="70%" m="auto">
 						<CustomAccordion
 							title="What are examples of orbital debris?"
 							desc="Derelict spacecraft and upper stages of launch vehicles, carriers for multiple payloads, debris intentionally released during spacecraft separation from its launch vehicle or during mission operations, debris created as a result of spacecraft or upper stage explosions or collisions, solid rocket motor effluents, and tiny flecks of paint released by thermal stress or small particle impacts."
@@ -354,4 +374,4 @@ const index = () => {
 	);
 };
 
-export default index;
+export default Index;

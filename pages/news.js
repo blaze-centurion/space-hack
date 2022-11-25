@@ -27,7 +27,7 @@ const News = () => {
 			const newsData = await newsRes.json();
 			const trendData = await trendRes.json();
 			const indiaData = await indiaRes.json();
-			setNews(newsData.articles.slice(0, 10));
+			setNews(newsData.articles.slice(0, 15));
 			setTrendingNews(trendData.articles.slice(0, 5));
 			setIndiaNews(indiaData.articles.slice(0, 5));
 			setLoading(false);
@@ -41,7 +41,7 @@ const News = () => {
 			`https://newsapi.org/v2/everything?q=${input}&apiKey=02bdbf8a6c35418bb25eb5aeb9d4f8ce`
 		);
 		const data = await res.json();
-		setNews(data.articles.slice(0, 10));
+		setNews(data.articles.slice(0, 15));
 	};
 
 	if (loading) {
@@ -99,7 +99,7 @@ const News = () => {
 
 						<Grid
 							templateColumns="repeat(2,1fr)"
-							gridGap="15px 15px"
+							gridGap="15px 10px"
 						>
 							{news.map((item, i) => {
 								const d = new Date(item.publishedAt);

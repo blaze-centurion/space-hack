@@ -8,6 +8,7 @@ const NewsItem = ({ img, url, title, desc, author, source, date }) => {
 				bg="whiteAlpha.50"
 				borderRadius="10px"
 				boxShadow="0 0 5px rgba(255,255,255,0.1)"
+				width="100%"
 			>
 				<Image
 					borderRadius="10px 10px 0 0"
